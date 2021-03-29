@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         UserViewModelFactory((application as NMLApplication).repository)
     }
 
-    val getInput = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+    private val getInput = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == Activity.RESULT_OK) {
             it.data?.getStringArrayExtra(InputActivity.EXTRA_REPLY)?.let {
                 val user = User(null, it[0], it[1], it[2], it[3].toInt(), it[4].toLong(), it[5])
@@ -52,13 +52,13 @@ class MainActivity : AppCompatActivity() {
 
         val fabadd = findViewById<FloatingActionButton>(R.id.fabadd)
         fabadd.setOnClickListener {
-            val intent = Intent(this@MainActivity, InputActivity::class.java)
-            startActivity(intent)
+            print(InputActivity::class.java)
+            getInput.launch(Intent(this, InputActivity::class.java))
         }
 
         val fabmap = findViewById<FloatingActionButton>(R.id.fabmap)
         fabmap.setOnClickListener {
-            val intent = Intent(this@MainActivity, MapsActivity::class.java)
+            val intent = Intent(this, MapsActivity::class.java)
             startActivity(intent)
         }
     }

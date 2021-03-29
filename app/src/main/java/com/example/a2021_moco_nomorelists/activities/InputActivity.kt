@@ -34,7 +34,7 @@ class InputActivity : AppCompatActivity() {
             if (TextUtils.isEmpty(editTextName.text) || TextUtils.isEmpty(editTextStreet.text) || TextUtils.isEmpty(editTextCity.text) || TextUtils.isEmpty(editTextZIP.text) || TextUtils.isEmpty(editTextPhone.text) || TextUtils.isEmpty(editTextEmail.text)) {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
-                val user = arrayListOf<String>(editTextName.text.toString(), editTextStreet.text.toString(), editTextCity.text.toString(), editTextZIP.text.toString(), editTextPhone.text.toString(), editTextEmail.text.toString())
+                val user = arrayOf<String>(editTextName.text.toString(), editTextStreet.text.toString(), editTextCity.text.toString(), editTextZIP.text.toString(), editTextPhone.text.toString(), editTextEmail.text.toString())
                 replyIntent.putExtra(EXTRA_REPLY, user)
                 setResult(Activity.RESULT_OK, replyIntent)
             }
