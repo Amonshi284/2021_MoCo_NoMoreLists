@@ -8,6 +8,12 @@ class UserRepository(private val userDao: UserDao) {
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
+    suspend fun getById(id: Int) {
+        userDao.getById(id)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
     suspend fun insert(user: User) {
         userDao.insert(user)
     }

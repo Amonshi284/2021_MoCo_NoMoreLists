@@ -21,21 +21,23 @@ class UserListAdapter : ListAdapter<User, UserListAdapter.UserViewHolder>(UsersC
 
     override fun onBindViewHolder(holder: UserListAdapter.UserViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current.name, current.street, current.city, current.zip.toString(), current.phoneNumber.toString(), current.email)
+        holder.bind(current.id.toString(), current.name, current.street, current.city, current.zip.toString(), current.phone.toString(), current.email)
     }
 
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val nameItemView: TextView = itemView.findViewById(R.id.editTextName)
-        private val streetItemView: TextView = itemView.findViewById(R.id.editTextStreet)
-        private val cityItemView: TextView = itemView.findViewById(R.id.editTextCity)
-        private val zipItemView: TextView = itemView.findViewById(R.id.editTextZIP)
-        private val phoneItemView: TextView = itemView.findViewById(R.id.editTextPhone)
-        private val emailItemView: TextView = itemView.findViewById(R.id.editTextEmailAddress)
+        private val idItemView: TextView = itemView.findViewById(R.id.textViewId)
+        private val nameItemView: TextView = itemView.findViewById(R.id.textViewName)
+        private val streetItemView: TextView = itemView.findViewById(R.id.textViewStreet)
+        private val cityItemView: TextView = itemView.findViewById(R.id.textViewCity)
+        private val zipItemView: TextView = itemView.findViewById(R.id.textViewZIP)
+        private val phoneItemView: TextView = itemView.findViewById(R.id.textViewPhone)
+        private val emailItemView: TextView = itemView.findViewById(R.id.textViewEmail)
 
-        fun bind(name: String?, street: String?, city: String?, zip: String, phone: String, email: String?){
+        fun bind(id: String, name: String?, street: String?, city: String?, zip: String, phone: String, email: String?){
             if (name.isNullOrEmpty() || street.isNullOrEmpty() || city.isNullOrEmpty() || email.isNullOrEmpty()) {
                 throw Exception("RecyclerView Null Input!")
             }
+            idItemView.text = id
             nameItemView.text = name
             streetItemView.text = street
             cityItemView.text = city
@@ -59,7 +61,7 @@ class UserListAdapter : ListAdapter<User, UserListAdapter.UserViewHolder>(UsersC
         }
 
         override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
-            return oldItem.name == newItem.name && oldItem.street == newItem.street && oldItem.city == newItem.city && oldItem.zip == newItem.zip && oldItem.phoneNumber == newItem.phoneNumber && oldItem.email == newItem.email
+            return oldItem.name == newItem.name && oldItem.street == newItem.street && oldItem.city == newItem.city && oldItem.zip == newItem.zip && oldItem.phone == newItem.phone && oldItem.email == newItem.email
         }
     }
 }

@@ -1,17 +1,13 @@
 package com.example.a2021_moco_nomorelists.activities
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a2021_moco_nomorelists.NMLApplication
 import com.example.a2021_moco_nomorelists.R
-import com.example.a2021_moco_nomorelists.models.User
 import com.example.a2021_moco_nomorelists.viewModels.UserListAdapter
 import com.example.a2021_moco_nomorelists.viewModels.UserViewModel
 import com.example.a2021_moco_nomorelists.viewModels.UserViewModelFactory
@@ -23,21 +19,6 @@ class MainActivity : AppCompatActivity() {
         UserViewModelFactory((application as NMLApplication).repository)
     }
 
-    private val getInput = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        if (it.resultCode == Activity.RESULT_OK) {
-            it.data?.getStringArrayExtra(InputActivity.EXTRA_REPLY)?.let {
-                val user = User(null, it[0], it[1], it[2], it[3].toInt(), it[4].toLong(), it[5])
-                userViewModel.insert(user)
-            }
-        } else {
-            Toast.makeText(
-                applicationContext,
-                "Nicht alle Felder wurden richtig befüllt!",
-                Toast.LENGTH_LONG).show()
-        }
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,14 +27,13 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        /*userViewModel.allUsers.observe(this) { users ->
+        userViewModel.allUsers.observe(this) { users ->
             users?.let { adapter.submitList(it) }
-        }*/
+        }
 
         val fabadd = findViewById<FloatingActionButton>(R.id.fabadd)
         fabadd.setOnClickListener {
-            print(InputActivity::class.java)
-            getInput.launch(Intent(this, InputActivity::class.java))
+            startActivity(Intent(this, InputActivity::class.java))
         }
 
         val fabmap = findViewById<FloatingActionButton>(R.id.fabmap)

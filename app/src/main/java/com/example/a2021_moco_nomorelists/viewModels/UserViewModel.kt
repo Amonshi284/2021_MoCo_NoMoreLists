@@ -9,6 +9,10 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
 
     val allUsers: LiveData<List<User>> = repository.allUsers.asLiveData()
 
+    fun getById(id: Int) = viewModelScope.launch {
+        repository.getById(id)
+    }
+
     fun insert(user: User) = viewModelScope.launch {
         repository.insert(user)
     }

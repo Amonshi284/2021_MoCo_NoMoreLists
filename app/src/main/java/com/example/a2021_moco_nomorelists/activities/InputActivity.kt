@@ -6,10 +6,20 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.a2021_moco_nomorelists.NMLApplication
 import com.example.a2021_moco_nomorelists.R
+import com.example.a2021_moco_nomorelists.models.User
+import com.example.a2021_moco_nomorelists.viewModels.UserViewModel
+import com.example.a2021_moco_nomorelists.viewModels.UserViewModelFactory
 
 class InputActivity : AppCompatActivity() {
+
+    private val userViewModel: UserViewModel by viewModels {
+        UserViewModelFactory((application as NMLApplication).repository)
+    }
 
     private lateinit var editTextName: EditText
     private lateinit var editTextStreet: EditText
@@ -32,17 +42,13 @@ class InputActivity : AppCompatActivity() {
         buttonSave.setOnClickListener {
             val replyIntent = Intent()
             if (TextUtils.isEmpty(editTextName.text) || TextUtils.isEmpty(editTextStreet.text) || TextUtils.isEmpty(editTextCity.text) || TextUtils.isEmpty(editTextZIP.text) || TextUtils.isEmpty(editTextPhone.text) || TextUtils.isEmpty(editTextEmail.text)) {
-                setResult(Activity.RESULT_CANCELED, replyIntent)
+                Toast.makeText(this, "Bitte füllen Sie alle Felder richtig aus.", Toast.LENGTH_LONG).show()
             } else {
-                val user = arrayOf<String>(editTextName.text.toString(), editTextStreet.text.toString(), editTextCity.text.toString(), editTextZIP.text.toString(), editTextPhone.text.toString(), editTextEmail.text.toString())
-                replyIntent.putExtra(EXTRA_REPLY, user)
+                val user = User(null, editTextName.text.toString(), editTextStreet.text.toString(), editTextCity.text.toString(), editTextZIP.text.toString().toInt(), editTextPhone.text.toString().toLong(), editTextEmail.text.toString())
+                userViewModel.insert(user)
                 setResult(Activity.RESULT_OK, replyIntent)
+                finish()
             }
-            finish()
         }
-    }
-
-    companion object {
-        const val EXTRA_REPLY = "com.example.a2021_moco_nomorelists.REPLY"
     }
 }

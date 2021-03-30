@@ -133,7 +133,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
-        updateLocationUI()
     }
 
     private fun updateLocationUI() {

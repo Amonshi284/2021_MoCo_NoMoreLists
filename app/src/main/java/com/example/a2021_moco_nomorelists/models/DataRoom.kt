@@ -9,13 +9,13 @@ import kotlinx.coroutines.launch
 
 @Entity
 data class User(
-    @PrimaryKey(autoGenerate = true) val id: Int?,
-    @ColumnInfo(name = "name") val name: String?,
-    @ColumnInfo(name = "street") val street: String?,
-    @ColumnInfo(name = "city") val city: String?,
-    @ColumnInfo(name = "zip") val zip: Int?,
-    @ColumnInfo(name = "phone_number") val phoneNumber: Long,
-    @ColumnInfo(name = "email") val email: String?
+        @PrimaryKey(autoGenerate = true) val id: Int?,
+        @ColumnInfo(name = "name") val name: String?,
+        @ColumnInfo(name = "street") val street: String?,
+        @ColumnInfo(name = "city") val city: String?,
+        @ColumnInfo(name = "zip") val zip: Int?,
+        @ColumnInfo(name = "phone") val phone: Long,
+        @ColumnInfo(name = "email") val email: String?
 )
 
 @Dao
