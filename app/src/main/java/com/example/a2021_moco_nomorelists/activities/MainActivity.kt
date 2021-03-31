@@ -38,8 +38,12 @@ class MainActivity : AppCompatActivity() {
 
         val fabmap = findViewById<FloatingActionButton>(R.id.fabmap)
         fabmap.setOnClickListener {
-            val intent = Intent(this, MapsActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, MapsActivity::class.java))
+        }
+
+        val fabscan = findViewById<FloatingActionButton>(R.id.fabscan)
+        fabscan.setOnClickListener {
+            startActivity(Intent(this, ScanActivity::class.java))
         }
     }
 }

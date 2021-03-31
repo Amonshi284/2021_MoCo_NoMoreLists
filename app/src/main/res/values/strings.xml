@@ -10,4 +10,7 @@
     <string name="saveText">Save</string>
     <string name="title_activity_input">InputActivity</string>
     <string name="title_activity_maps">Map</string>
+    <string name="fabaddContent">Plus</string>
+    <string name="fabscanContent">QR-Code Scanner</string>
+    <string name="fabmapContent">Map Symbol</string>
 </resources>

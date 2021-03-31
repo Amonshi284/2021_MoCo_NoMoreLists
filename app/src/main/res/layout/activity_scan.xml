@@ -23,7 +23,6 @@
         android:layout_below="@id/scanner_view"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
-        android:text="Scannt..."
-        android:textColor="android:color/black" />
+        android:text="Scannt..."/>
 
 </RelativeLayout>
